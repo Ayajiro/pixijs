@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>pixi.js</title>
+</head>
+<body>
+
+<link rel="stylesheet" href="css/reset.css">
+<script src="pixi.js-master/bin/pixi.min.js"></script>
+<script>
+
+var renderer = PIXI.autoDetectRenderer(800, 450, {backgroundColor : 0x000000});
+document.body.appendChild(renderer.view);
+var stage = new PIXI.Container();
+
+
+var background = new PIXI.Sprite.fromImage('images/img.jpg');
+background.width = renderer.width;
+background.height = renderer.height;
+
+stage.addChild(background);
+
+animate();
+function animate() {
+    requestAnimationFrame(animate);
+
+    // 渲染 Container
+    renderer.render(stage);
+}
+
+</script>
+
+
+
+
+</body>
+</html>

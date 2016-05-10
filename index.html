@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>pixi.js</title>
+</head>
+<body>
+<canvas id="main"></canvas>
+<link rel="stylesheet" href="css/reset.css">
+<script src="pixi.js-master/bin/pixi.min.js"></script>
+<script>
+//test pixi is working
+
+console.log(PIXI);
+
+
+//creat render and stage
+
+var renderer = new PIXI.autoDetectRenderer(256,256,{view:document.getElementById('main')});
+
+var stage = new PIXI.Container();
+
+renderer.render(stage);
+
+// renderer.view.style.position = "absolute";
+// renderer.view.style.display = "block";
+// renderer.autoResize = true;
+// renderer.resize(window.innerWidth, window.innerHeight);
+var texture = PIXI.utils.TextureCache["images/img.jpg"];
+var logo = new PIXI.Sprite(texture);
+</script>
+
+
+
+
+</body>
+</html>

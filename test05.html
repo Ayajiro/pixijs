@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>pixi.js-container</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<script src="pixi.js-master/bin/pixi.min.js"></script>
+</head>
+<body>
+<script>
+
+// 建立render判定是否有webgl（autoDetectRenderer自動判斷）
+var renderer = PIXI.autoDetectRenderer(800,600,{backgroundColor:0x1099bb});
+// 加入頁面
+document.body.appendChild(renderer.view);
+
+// 建立stage和容器
+var stage = new PIXI.Container();
+var container = new PIXI.Container();
+
+// stage加入容器
+stage.addChild(container);
+
+for (var j = 0; j<5; j++) {
+	for (var i = 0; i < 5; i++) {
+		var bunny = PIXI.Sprite.fromImage('images/bunny.png');
+		bunny.anchor.x = 0.5;
+		bunny.anchor.y = 0.5;
+		bunny.x=40*i;
+		bunny.y=40*j;
+		 // bunny.rotation += 0.1;
+		container.addChild(bunny);
+	}
+}
+/*
+ * All the bunnies are added to the container with the addChild method
+ * when you do this, all the bunnies become children of the container, and when a container moves,
+ * so do all its children.
+ * This gives you a lot of flexibility and makes it easier to position elements on the screen
+ */
+
+container.x=300;
+container.y=200;
+
+
+animate();
+
+function animate(){
+
+	requestAnimationFrame(animate);
+	container.rotation += 0.1;
+	// 以render渲染stage
+	renderer.render(stage);
+}
+
+
+
+
+</script>
+</body>
+</html>

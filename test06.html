@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>pixi.js-SpriteSheet Animation </title>
+	<link rel="stylesheet" href="css/reset.css">
+	<script src="pixi.js-master/bin/pixi.min.js"></script>
+</head>
+<body>
+<script>
+
+// 建立render判定是否有webgl（autoDetectRenderer自動判斷）
+var renderer = PIXI.autoDetectRenderer(800,600);
+// 加入頁面
+document.body.appendChild(renderer.view);
+
+// 建立stage和容器
+var stage = new PIXI.Container();
+
+PIXI.loader
+	.add('images/fighter.json')
+	.load(onAssetsLoaded);
+
+var movie;
+
+
+function onAssetsLoaded(){
+
+	var frames=[];
+
+	for (var i = 0; i < 30; i++) {
+		var val = i<10?'0'+i:i;
+
+		frames.push(PIXI.Texture.fromFrame('rollSequence00'+val+'.png'));
+	}
+
+	movie = new PIXI.extras.MovieClip(frames);
+
+	movie.position.set(300);
+	movie.anchor.set(0.5);
+	movie.animationSpeed=0.5;
+
+	movie.play();
+
+	stage.addChild(movie);
+	animate();
+}
+
+function animate(){
+	movie.rotation+=0.01;
+
+	
+	
+	// 以render渲染stage
+	renderer.render(stage);
+	requestAnimationFrame(animate);
+}
+
+
+
+
+</script>
+</body>
+</html>

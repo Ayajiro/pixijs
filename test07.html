@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>pixi.js-Click</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<script src="pixi.js-master/bin/pixi.min.js"></script>
+</head>
+<body>
+<script>
+
+// 建立render判定是否有webgl（autoDetectRenderer自動判斷）
+var renderer = PIXI.autoDetectRenderer(800,600,{backgroundColor:0x1099bb});
+document.body.appendChild(renderer.view);
+
+// 建立stage和容器
+var stage = new PIXI.Container();
+
+var sprite = PIXI.Sprite.fromImage('images/bunny.png');
+
+
+sprite.position.set(230,264);
+sprite.anchor.set(0.5);
+sprite.interactive = true;
+sprite.on('mousedown', onDown);
+sprite.on('touchstart', onDown);
+
+stage.addChild(sprite);
+function onDown(eventData){
+	sprite.scale.x+=0.5;
+	sprite.scale.y+=0.5;
+}
+
+
+animate();
+
+function animate(){
+
+	requestAnimationFrame(animate);
+	sprite.rotation += 0.1;
+
+	// 以render渲染stage
+	renderer.render(stage);
+}
+
+
+
+
+</script>
+</body>
+</html>
